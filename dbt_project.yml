@@ -1,0 +1,105 @@
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'finflow_analytics'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'finflow_analytics'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+# Updated vars section with grouped configurations and comments
+vars:
+  # Transaction configuration
+  allowed_transaction_types: ['Deposit', 'Withdrawal', 'Transfer', 'Payment']
+  max_transaction_amount: 1000000000
+  min_transaction_amount: 0
+  
+  # Balance configuration
+  min_balance: -1000
+  max_balance: 10000000000
+  
+  # Date configuration
+  start_date: '2020-01-01'
+  end_date: '2025-12-31'
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  finflow_analytics:
+    bronze:
+      +materialized: incremental
+      +incremental_strategy: merge
+      +on_schema_change: sync_all_columns
+      +schema: bronze
+      +tags: ['bronze', 'raw']
+
+    silver:
+      +materialized: view
+      +schema: silver
+      +tags: ['silver', 'intermediate']
+    
+    gold:
+      +materialized: table
+      +schema: gold
+      +tags: ['gold', 'business']
+
+# Added tests configuration
+tests:
+  finflow_analytics:
+    +store_failures: false
+    +severity: error
+    +warn_if: ">0"
+    +error_if: ">100"
+    
+    generic:
+      metric_variance:
+        +enabled: true
+        +severity: warn
+        +warn_if: ">10"
+        +error_if: ">50"
+      
+      consistent_balances:
+        +enabled: true
+        +severity: error
+        +error_if: ">0"
+      
+      transaction_limits:
+        +enabled: true
+        +severity: error
+        +error_if: ">0"
+    
+    singular:
+      test_referential_integrity_full:
+        +enabled: true
+        +severity: error
+        +error_if: ">0"
+      
+      test_balance_reconciliation_full:
+        +enabled: true
+        +severity: error
+        +error_if: ">0"
+      
+      test_customer_metric_consistency:
+        +enabled: true
+        +severity: error
+        +error_if: ">0"

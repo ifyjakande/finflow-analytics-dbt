@@ -1,0 +1,131 @@
+version: 2
+
+sources:
+  - name: finflow_analytics_production
+    database: finflow-analytics-production
+    schema: finflow_data
+    loaded_at_field: "ingestion_timestamp"
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    config:
+      location: "US-CENTRAL1"
+
+    tables:
+      - name: src_customers
+        identifier: src_customers
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: customer_key
+            description: Unique identifier for customer
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: Natural key for customer
+            tests:
+              - unique
+              - not_null
+          - name: email
+            description: Customer email address
+            tests:
+              - not_null
+
+      - name: src_accounts
+        identifier: src_accounts
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: account_key
+            description: Unique identifier for account
+            tests:
+              - unique
+              - not_null
+          - name: customer_key
+            description: Foreign key to customers
+            tests:
+              - not_null
+              - relationships:
+                  to: source('finflow_analytics_production', 'src_customers')
+                  field: customer_key
+
+      - name: src_transactions
+        identifier: src_transactions
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: transaction_id
+            description: Unique identifier for transaction
+            tests:
+              - unique
+              - not_null
+          - name: account_key
+            description: Foreign key to accounts
+            tests:
+              - not_null
+              - relationships:
+                  to: source('finflow_analytics_production', 'src_accounts')
+                  field: account_key
+          - name: transaction_amount
+            description: Amount of the transaction
+            tests:
+              - dbt_utils.expression_is_true:
+                  expression: "{{ column_name }} >= 0"
+
+      - name: src_products
+        identifier: src_products
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: product_key
+            description: Unique identifier for product
+            tests:
+              - unique
+              - not_null
+          - name: product_category
+            description: Product category
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['Savings', 'Checking', 'Investment', 'Loan', 'Credit']
+
+      - name: src_locations
+        identifier: src_locations
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: location_key
+            description: Unique identifier for location
+            tests:
+              - unique
+              - not_null
+          - name: country_code
+            description: ISO country code
+            tests:
+              - not_null
+
+      - name: src_dates
+        identifier: src_dates
+        loaded_at_field: ingestion_timestamp
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        columns:
+          - name: date_key
+            description: Unique identifier for date
+            tests:
+              - unique
+              - not_null
+          - name: is_weekend
+            description: Flag indicating weekend

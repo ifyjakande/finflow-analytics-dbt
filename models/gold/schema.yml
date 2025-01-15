@@ -1,0 +1,299 @@
+version: 2
+
+models:
+  - name: dim_account
+    description: Account dimension with product details and derived metrics
+    columns:
+      - name: account_key
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('src_accounts')
+              field: account_key
+      - name: account_id
+        description: Business identifier for the account
+        tests:
+          - not_null
+      - name: customer_key
+        description: Foreign key to customer dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+      - name: product_key
+        description: Foreign key to product dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_key
+      - name: account_type
+        description: Type of account (Savings/Checking/Credit/Investment)
+        tests:
+          - accepted_values:
+              values: ['Savings', 'Checking', 'Credit', 'Investment']
+      - name: account_status
+        description: Current status of the account
+        tests:
+          - accepted_values:
+              values: ['Active', 'Inactive', 'Closed']
+      - name: initial_deposit
+        description: Initial deposit amount
+        tests:
+          - not_null
+      - name: minimum_balance
+        description: Required minimum balance
+        tests:
+          - not_null
+      - name: balance
+        description: Current account balance
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} >= 0"
+          - not_null
+      - name: credit_limit
+        description: Credit limit for credit accounts
+        tests:
+          - not_null
+      - name: opened_date
+        description: Date account was opened
+        tests:
+          - not_null
+      - name: closed_date
+        description: Date account was closed, if applicable
+      - name: balance_segment
+        description: Classification of account balance
+        tests:
+          - accepted_values:
+              values: ['High Balance', 'Medium Balance', 'Low Balance', 'Negative Balance']
+      - name: available_funds
+        description: Available funds calculation based on account type
+        tests:
+          - not_null
+      - name: created_at
+        description: Record creation timestamp
+        tests:
+          - not_null
+      - name: updated_at
+        description: Record last update timestamp
+        tests:
+          - not_null
+      - name: dw_updated_at
+        description: Data warehouse update timestamp
+        tests:
+          - not_null
+      - name: credit_utilization_pct
+        description: Credit utilization percentage for credit accounts
+      - name: rapid_transaction_count
+        description: Count of transactions made within 5 minutes of each other
+
+  - name: dim_product
+    description: "Product dimension table"
+    columns:
+      - name: product_key
+        description: "Primary key for product dimension"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: Business identifier for the product
+        tests:
+          - not_null
+      - name: product_name
+        description: Name of the product
+        tests:
+          - not_null
+      - name: product_category
+        description: Main category of the product
+        tests:
+          - not_null
+      - name: interest_rate_tier
+        description: Categorization of interest rate (High/Medium/Low)
+      - name: fee_tier
+        description: Categorization of monthly fees (Free/Basic/Standard/Premium)
+
+  - name: dim_location
+    description: Location dimension table with geographical hierarchy
+    columns:
+      - name: location_key
+        description: Primary key for location dimension
+        tests:
+          - unique
+          - not_null
+      - name: location_id
+        description: Business identifier for the location
+        tests:
+          - not_null
+      - name: location_name
+        description: Name of the location
+        tests:
+          - not_null
+      - name: location_type
+        description: Classification of location (Domestic/International)
+      - name: full_location_name
+        description: Concatenated location details (City, State, Country)
+
+  - name: dim_date
+    description: Date dimension table with calendar attributes
+    columns:
+      - name: date_key
+        description: Primary key for date dimension
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: Complete date in DATE format
+        tests:
+          - not_null
+      - name: season
+        description: Season of the year (Winter/Spring/Summer/Fall)
+      - name: quarter_name
+        description: Quarter and year combined (e.g., Q1 2024)
+      - name: month_name
+        description: Full month name
+      - name: year_month
+        description: Year and month in YYYY-MM format
+
+  - name: dim_customer
+    description: "Customer dimension table with SCD Type 2 tracking"
+    columns:
+      - name: customer_key
+        description: "Primary key for customer dimension"
+        tests:
+          - unique:
+              where: "is_current = true"
+          - not_null
+      - name: customer_id
+        description: "Natural key from source system"
+        tests:
+          - not_null
+      - name: first_name
+        description: "Customer's first name"
+        tests:
+          - not_null
+      - name: last_name
+        description: "Customer's last name"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer email address"
+        tests:
+          - not_null
+      - name: phone_number
+        description: "Customer phone number"
+      - name: address
+        description: "Customer's street address"
+      - name: city
+        description: "Customer's city"
+      - name: state
+        description: "Customer's state"
+      - name: country
+        description: "Customer's country"
+      - name: postal_code
+        description: "Customer's postal code"
+      - name: customer_segment
+        description: "Customer segmentation category"
+      - name: customer_since_date
+        description: "Date when customer relationship started"
+        tests:
+          - not_null
+      - name: total_accounts
+        description: "Total number of accounts"
+        tests:
+          - not_null
+      - name: active_accounts
+        description: "Number of active accounts"
+        tests:
+          - not_null
+      - name: total_transaction_volume
+        description: "Total transaction volume"
+      - name: last_transaction_date
+        description: "Date of last transaction"
+      - name: is_active
+        description: "Flag indicating if customer is active"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} IN (true, false)"
+      # Product metrics from customer_product_metrics
+      - name: product_categories_used
+        description: "Number of different product categories used"
+      - name: product_subcategories_used
+        description: "Number of different product subcategories used"
+      - name: first_product_date
+        description: "Date of first product usage"
+      - name: latest_product_date
+        description: "Date of most recent product usage"
+      - name: active_products_count
+        description: "Number of currently active products"
+      # Timestamps and SCD Type 2 columns
+      - name: created_at
+        description: "Record creation timestamp"
+        tests:
+          - not_null
+      - name: updated_at
+        description: "Record update timestamp"
+        tests:
+          - not_null
+      - name: valid_from
+        description: "SCD Type 2 validity start timestamp"
+        tests:
+          - not_null
+      - name: valid_to
+        description: "SCD Type 2 validity end timestamp"
+      - name: is_current
+        description: "Flag indicating current version of customer record"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} IN (true, false)"
+      - name: dw_updated_at
+        description: "Data warehouse update timestamp"
+        tests:
+          - not_null
+
+  - name: fact_transactions
+    description: "Fact table containing all financial transactions"
+    columns:
+      - name: transaction_sk
+        description: "Surrogate key for the transaction fact"
+        tests:
+          - unique
+          - not_null
+      
+      - name: customer_key
+        description: "Foreign key to dim_customer"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+          - dbt_utils.relationships_where:
+              to: ref('dim_customer')
+              field: customer_key
+              from_condition: "1=1"
+              to_condition: "is_current"
+      
+      - name: transaction_amount
+        description: "Amount of the transaction"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} >= 0"
+
+  - name: fact_account_balances
+    description: "Account balance fact table"
+    columns:
+      - name: closing_balance
+        description: "End of day balance"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} >= 0"
+      - name: opening_balance
+        description: "Start of day balance"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "{{ column_name }} >= 0"

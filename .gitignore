@@ -1,0 +1,17 @@
+# DBT specific
+target/
+dbt_packages/
+logs/
+
+# Python
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+
+# Environment
+.user.yml
+profiles.yml
+
+# OS specific
+.DS_Store
+.vscode/

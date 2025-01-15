@@ -1,0 +1,125 @@
+version: 2
+
+models:
+  - name: int_account_metrics
+    description: Daily and monthly account-level transaction metrics
+    columns:
+      - name: account_key
+        description: Primary key from account dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_accounts')
+              field: account_key
+      - name: month
+        description: Month of the metrics
+        tests:
+          - not_null
+      - name: monthly_transactions
+        description: Count of transactions in the month
+      - name: net_monthly_change
+        description: Net change in account balance for the month
+      - name: monthly_fees
+        description: Total fees charged in the month
+      - name: month_over_month_growth
+        description: Growth rate compared to previous month
+
+  - name: int_account_risk_metrics
+    description: Risk and health metrics for accounts
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "credit_utilization_pct IS NULL OR credit_utilization_pct <= 100"
+          severity: warn
+    columns:
+      - name: account_key
+        description: Primary key from account dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_accounts')
+              field: account_key
+      - name: below_minimum_balance_flag
+        description: Flag indicating if account is below minimum balance (1=yes, 0=no)
+      - name: credit_utilization_pct
+        description: Credit utilization percentage for credit accounts
+      - name: rapid_transaction_count
+        description: Count of transactions made within 5 minutes of each other
+
+  - name: int_customer_metrics
+    description: Daily and monthly customer-level transaction metrics
+    columns:
+      - name: customer_key
+        description: Primary key from customer dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_customers')
+              field: customer_key
+      - name: month
+        description: Month of the metrics
+      - name: monthly_transactions
+        description: Count of customer transactions in the month
+      - name: monthly_volume
+        description: Total transaction volume in the month
+      - name: month_over_month_growth
+        description: Growth rate compared to previous month
+
+  - name: int_customer_product_metrics
+    description: Product adoption and usage metrics by customer
+    columns:
+      - name: customer_key
+        description: Primary key from customer dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_customers')
+              field: customer_key
+      - name: product_categories_used
+        description: Number of unique product categories used by customer
+      - name: product_subcategories_used
+        description: Number of unique product subcategories used by customer
+      - name: first_product_date
+        description: Date of first product adoption
+        tests:
+          - not_null
+      - name: latest_product_date
+        description: Date of most recent product adoption
+        tests:
+          - not_null
+      - name: active_products_count
+        description: Number of currently active products
+
+  - name: int_transaction_metrics
+    description: Transaction patterns and customer averages
+    columns:
+      - name: customer_key
+        description: Primary key from customer dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_customers')
+              field: customer_key
+      - name: account_key
+        description: Primary key from account dimension
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_accounts')
+              field: account_key
+      - name: transaction_type
+        description: Type of transaction
+        tests:
+          - accepted_values:
+              values: ['Deposit', 'Withdrawal', 'Transfer', 'Payment']
+              severity: warn
+      - name: transaction_month
+        description: Month of transaction
+      - name: total_amount
+        description: Total transaction amount
+      - name: avg_monthly_transactions
+        description: Average number of monthly transactions
+      - name: volume_category
+        description: Transaction volume category (High/Normal/Low)
+        tests:
+          - accepted_values:
+              values: ['High', 'Normal', 'Low']

@@ -1,0 +1,14 @@
+version: 2
+
+tests:
+  - name: assert_valid_dates
+    description: "Ensures all dates are within valid range"
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "full_date <= CURRENT_DATE() AND full_date >= '2020-01-01'"
+          
+  - name: assert_balance_matches_transactions
+    description: "Ensures account balances match transaction history"
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "ABS(balance - calculated_balance) <= 1.00" 

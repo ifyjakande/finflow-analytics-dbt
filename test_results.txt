@@ -1,0 +1,352 @@
+[0m14:39:15  Running with dbt=1.9.1
+[0m14:39:17  Registered adapter: bigquery=1.9.1
+[0m14:39:17  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 6 unused configuration paths:
+- data_tests.finflow_analytics.generic.transaction_limits
+- data_tests.finflow_analytics.singular.test_balance_reconciliation_full
+- data_tests.finflow_analytics.singular.test_referential_integrity_full
+- data_tests.finflow_analytics.generic.metric_variance
+- data_tests.finflow_analytics.singular.test_customer_metric_consistency
+- data_tests.finflow_analytics.generic.consistent_balances
+[0m14:39:18  Found 19 models, 126 data tests, 6 sources, 734 macros
+[0m14:39:18  
+[0m14:39:18  Concurrency: 4 threads (target='dev')
+[0m14:39:18  
+[0m14:39:19  1 of 126 START test accepted_values_dim_account_account_status__Active__Inactive__Closed  [RUN]
+[0m14:39:19  2 of 126 START test accepted_values_dim_account_account_type__Savings__Checking__Credit__Investment  [RUN]
+[0m14:39:19  3 of 126 START test accepted_values_dim_account_balance_segment__High_Balance__Medium_Balance__Low_Balance__Negative_Balance  [RUN]
+[0m14:39:19  4 of 126 START test accepted_values_dim_account_below_minimum_balance_flag__0__1  [RUN]
+[0m14:39:21  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:c37a0444-cb7c-402d-9fc1-582c090bf5a1&page=queryresults
+[0m14:39:21  4 of 126 ERROR accepted_values_dim_account_below_minimum_balance_flag__0__1 .... [[31mERROR[0m in 1.87s]
+[0m14:39:21  5 of 126 START test accepted_values_dim_customer_customer_segment__High_Value__Medium_Value__Standard__New_Customer  [RUN]
+[0m14:39:22  3 of 126 PASS accepted_values_dim_account_balance_segment__High_Balance__Medium_Balance__Low_Balance__Negative_Balance  [[32mPASS[0m in 2.97s]
+[0m14:39:22  6 of 126 START test accepted_values_fact_account_balances_below_minimum_balance_flag__0__1  [RUN]
+[0m14:39:22  2 of 126 PASS accepted_values_dim_account_account_type__Savings__Checking__Credit__Investment  [[32mPASS[0m in 3.00s]
+[0m14:39:22  7 of 126 START test accepted_values_fact_account_balances_credit_risk_category__High_Risk__Medium_Risk__Low_Risk__Healthy  [RUN]
+[0m14:39:23  1 of 126 PASS accepted_values_dim_account_account_status__Active__Inactive__Closed  [[32mPASS[0m in 3.13s]
+[0m14:39:23  8 of 126 START test accepted_values_fact_account_balances_daily_balance_trend__Increase__Decrease__No_Change  [RUN]
+[0m14:39:24  5 of 126 PASS accepted_values_dim_customer_customer_segment__High_Value__Medium_Value__Standard__New_Customer  [[32mPASS[0m in 2.43s]
+[0m14:39:24  9 of 126 START test accepted_values_fact_customer_metrics_growth_status__High_Growth__Growing__Stable__Declining  [RUN]
+[0m14:39:24  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:3224a7f1-ab7e-4132-b1f2-c653741ce9a9&page=queryresults
+[0m14:39:24  6 of 126 ERROR accepted_values_fact_account_balances_below_minimum_balance_flag__0__1  [[31mERROR[0m in 1.51s]
+[0m14:39:24  10 of 126 START test accepted_values_fact_customer_metrics_volume_tier__High__Medium__Low  [RUN]
+[0m14:39:25  7 of 126 PASS accepted_values_fact_account_balances_credit_risk_category__High_Risk__Medium_Risk__Low_Risk__Healthy  [[32mPASS[0m in 2.48s]
+[0m14:39:25  11 of 126 START test accepted_values_fact_transactions_is_high_value_transaction__0__1  [RUN]
+[0m14:39:25  8 of 126 PASS accepted_values_fact_account_balances_daily_balance_trend__Increase__Decrease__No_Change  [[32mPASS[0m in 2.45s]
+[0m14:39:25  12 of 126 START test accepted_values_fact_transactions_is_negative_balance__0__1  [RUN]
+[0m14:39:26  9 of 126 PASS accepted_values_fact_customer_metrics_growth_status__High_Growth__Growing__Stable__Declining  [[32mPASS[0m in 2.51s]
+[0m14:39:26  13 of 126 START test accepted_values_fact_transactions_transaction_size_category__High__Medium__Low  [RUN]
+[0m14:39:26  10 of 126 PASS accepted_values_fact_customer_metrics_volume_tier__High__Medium__Low  [[32mPASS[0m in 2.47s]
+[0m14:39:26  14 of 126 START test accepted_values_fact_transactions_transaction_time_category__Business_Hours__Non_Business_Hours  [RUN]
+[0m14:39:27  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:9e4ecbcb-f054-40ff-bfcc-f90e6f269f03&page=queryresults
+[0m14:39:27  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:e9f19f81-104c-478b-b8c6-1353ea05276d&page=queryresults
+[0m14:39:27  12 of 126 ERROR accepted_values_fact_transactions_is_negative_balance__0__1 .... [[31mERROR[0m in 1.42s]
+[0m14:39:27  15 of 126 START test accepted_values_fact_transactions_transaction_type__Deposit__Withdrawal__Transfer__Payment  [RUN]
+[0m14:39:27  11 of 126 ERROR accepted_values_fact_transactions_is_high_value_transaction__0__1  [[31mERROR[0m in 1.62s]
+[0m14:39:27  16 of 126 START test accepted_values_int_transaction_metrics_transaction_type__Deposit__Withdrawal__Transfer__Payment  [RUN]
+[0m14:39:29  13 of 126 PASS accepted_values_fact_transactions_transaction_size_category__High__Medium__Low  [[32mPASS[0m in 2.43s]
+[0m14:39:29  17 of 126 START test accepted_values_int_transaction_metrics_volume_category__High__Normal__Low  [RUN]
+[0m14:39:29  14 of 126 PASS accepted_values_fact_transactions_transaction_time_category__Business_Hours__Non_Business_Hours  [[32mPASS[0m in 2.54s]
+[0m14:39:29  18 of 126 START test dbt_utils_expression_is_true_fact_account_balances_credit_utilization_pct__IS_NULL_OR_credit_utilization_pct_0_AND_credit_utilization_pct_100_  [RUN]
+[0m14:39:29  15 of 126 PASS accepted_values_fact_transactions_transaction_type__Deposit__Withdrawal__Transfer__Payment  [[32mPASS[0m in 2.53s]
+[0m14:39:29  19 of 126 START test dbt_utils_expression_is_true_fact_account_balances_daily_fees___0  [RUN]
+[0m14:39:30  16 of 126 PASS accepted_values_int_transaction_metrics_transaction_type__Deposit__Withdrawal__Transfer__Payment  [[32mPASS[0m in 2.99s]
+[0m14:39:30  20 of 126 START test dbt_utils_expression_is_true_fact_account_balances_daily_transaction_count___0  [RUN]
+[0m14:39:31  18 of 126 PASS dbt_utils_expression_is_true_fact_account_balances_credit_utilization_pct__IS_NULL_OR_credit_utilization_pct_0_AND_credit_utilization_pct_100_  [[32mPASS[0m in 2.50s]
+[0m14:39:31  21 of 126 START test dbt_utils_expression_is_true_fact_account_balances_monthly_transaction_count__monthly_transaction_count_0  [RUN]
+[0m14:39:31  17 of 126 PASS accepted_values_int_transaction_metrics_volume_category__High__Normal__Low  [[32mPASS[0m in 2.76s]
+[0m14:39:32  22 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_active_accounts__active_accounts_0  [RUN]
+[0m14:39:32  19 of 126 PASS dbt_utils_expression_is_true_fact_account_balances_daily_fees___0  [[32mPASS[0m in 2.40s]
+[0m14:39:32  23 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_active_products_count__active_products_count_0  [RUN]
+[0m14:39:32  20 of 126 PASS dbt_utils_expression_is_true_fact_account_balances_daily_transaction_count___0  [[32mPASS[0m in 2.63s]
+[0m14:39:32  24 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_avg_daily_volume__avg_daily_volume_0  [RUN]
+[0m14:39:33  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:d9256850-0aeb-4879-9606-1351d355eba7&page=queryresults
+[0m14:39:33  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:e6f2b1ee-22a2-4dc7-9f03-626953bae948&page=queryresults
+[0m14:39:33  21 of 126 ERROR dbt_utils_expression_is_true_fact_account_balances_monthly_transaction_count__monthly_transaction_count_0  [[31mERROR[0m in 1.53s]
+[0m14:39:33  23 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_active_products_count__active_products_count_0  [[31mERROR[0m in 1.50s]
+[0m14:39:33  25 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_monthly_fees__monthly_fees_0  [RUN]
+[0m14:39:33  26 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_monthly_transactions__monthly_transactions_0  [RUN]
+[0m14:39:33  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:4d821580-d3eb-4518-ac06-7dc6e2ea70ba&page=queryresults
+[0m14:39:33  22 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_active_accounts__active_accounts_0  [[31mERROR[0m in 1.77s]
+[0m14:39:33  27 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_monthly_volume__monthly_volume_0  [RUN]
+[0m14:39:33  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:e1d78334-e193-4e12-ad74-964f20615235&page=queryresults
+[0m14:39:33  24 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_avg_daily_volume__avg_daily_volume_0  [[31mERROR[0m in 1.26s]
+[0m14:39:33  28 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_product_categories_used__product_categories_used_0  [RUN]
+[0m14:39:34  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:ea0b830f-9b7f-4964-969e-2c203fb39193&page=queryresults
+[0m14:39:34  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:4aa103e1-c85a-4ab8-b7d5-c5f4c882f69e&page=queryresults
+[0m14:39:34  25 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_monthly_fees__monthly_fees_0  [[31mERROR[0m in 1.40s]
+[0m14:39:34  29 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_product_subcategories_used__product_subcategories_used_0  [RUN]
+[0m14:39:34  26 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_monthly_transactions__monthly_transactions_0  [[31mERROR[0m in 1.39s]
+[0m14:39:34  30 of 126 START test dbt_utils_expression_is_true_fact_customer_metrics_total_accounts__total_accounts_0  [RUN]
+[0m14:39:35  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:6b43042a-9c5c-479b-bb1a-1a13af755328&page=queryresults
+[0m14:39:35  28 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_product_categories_used__product_categories_used_0  [[31mERROR[0m in 1.21s]
+[0m14:39:35  31 of 126 START test dbt_utils_expression_is_true_fact_transactions_fee_percentage__fee_percentage_0_AND_fee_percentage_100  [RUN]
+[0m14:39:35  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:225ca233-645a-4249-8901-f5e6fe19c302&page=queryresults
+[0m14:39:35  27 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_monthly_volume__monthly_volume_0  [[31mERROR[0m in 1.55s]
+[0m14:39:35  32 of 126 START test dbt_utils_expression_is_true_fact_transactions_transaction_amount__transaction_amount_0  [RUN]
+[0m14:39:36  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:bee2fad2-d6f3-4c18-af12-c1a26e1a5761&page=queryresults
+[0m14:39:36  30 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_total_accounts__total_accounts_0  [[31mERROR[0m in 1.36s]
+[0m14:39:36  33 of 126 START test dbt_utils_expression_is_true_int_account_risk_metrics_credit_utilization_pct_IS_NULL_OR_credit_utilization_pct_100  [RUN]
+[0m14:39:36  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:fabd961f-b811-4969-813b-11c542307d65&page=queryresults
+[0m14:39:36  29 of 126 ERROR dbt_utils_expression_is_true_fact_customer_metrics_product_subcategories_used__product_subcategories_used_0  [[31mERROR[0m in 1.40s]
+[0m14:39:36  34 of 126 START test not_null_dim_account_account_id ........................... [RUN]
+[0m14:39:36  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:05138bc0-8d2c-449b-bf3c-9e52f23ee5d2&page=queryresults
+[0m14:39:36  31 of 126 ERROR dbt_utils_expression_is_true_fact_transactions_fee_percentage__fee_percentage_0_AND_fee_percentage_100  [[31mERROR[0m in 1.37s]
+[0m14:39:36  BigQuery adapter: https://console.cloud.google.com/bigquery?project=finflow-analytics-production&j=bq:us-central1:a513c6ec-8c5f-4b22-80d4-62d9e84d5252&page=queryresults
+[0m14:39:36  35 of 126 START test not_null_dim_account_account_key .......................... [RUN]
+[0m14:39:36  32 of 126 ERROR dbt_utils_expression_is_true_fact_transactions_transaction_amount__transaction_amount_0  [[31mERROR[0m in 1.25s]
+[0m14:39:36  36 of 126 START test not_null_dim_account_account_status ....................... [RUN]
+[0m14:39:38  33 of 126 PASS dbt_utils_expression_is_true_int_account_risk_metrics_credit_utilization_pct_IS_NULL_OR_credit_utilization_pct_100  [[32mPASS[0m in 2.62s]
+[0m14:39:38  37 of 126 START test not_null_dim_account_account_type ......................... [RUN]
+[0m14:39:39  34 of 126 PASS not_null_dim_account_account_id ................................. [[32mPASS[0m in 2.73s]
+[0m14:39:39  36 of 126 PASS not_null_dim_account_account_status ............................. [[32mPASS[0m in 2.47s]
+[0m14:39:39  38 of 126 START test not_null_dim_account_available_funds ...................... [RUN]
+[0m14:39:39  39 of 126 START test not_null_dim_account_balance .............................. [RUN]
+[0m14:39:39  35 of 126 PASS not_null_dim_account_account_key ................................ [[32mPASS[0m in 2.62s]
+[0m14:39:39  40 of 126 START test not_null_dim_account_balance_segment ...................... [RUN]
+[0m14:39:41  37 of 126 PASS not_null_dim_account_account_type ............................... [[32mPASS[0m in 2.36s]
+[0m14:39:41  41 of 126 START test not_null_dim_account_created_at ........................... [RUN]
+[0m14:39:41  39 of 126 PASS not_null_dim_account_balance .................................... [[32mPASS[0m in 2.35s]
+[0m14:39:41  42 of 126 START test not_null_dim_account_credit_limit ......................... [RUN]
+[0m14:39:41  38 of 126 PASS not_null_dim_account_available_funds ............................ [[32mPASS[0m in 2.37s]
+[0m14:39:41  43 of 126 START test not_null_dim_account_customer_key ......................... [RUN]
+[0m14:39:41  40 of 126 PASS not_null_dim_account_balance_segment ............................ [[32mPASS[0m in 2.21s]
+[0m14:39:41  44 of 126 START test not_null_dim_account_dw_updated_at ........................ [RUN]
+[0m14:39:44  44 of 126 PASS not_null_dim_account_dw_updated_at .............................. [[32mPASS[0m in 2.82s]
+[0m14:39:44  45 of 126 START test not_null_dim_account_initial_deposit ...................... [RUN]
+[0m14:39:44  41 of 126 PASS not_null_dim_account_created_at ................................. [[32mPASS[0m in 3.20s]
+[0m14:39:44  43 of 126 PASS not_null_dim_account_customer_key ............................... [[32mPASS[0m in 2.97s]
+[0m14:39:44  46 of 126 START test not_null_dim_account_minimum_balance ...................... [RUN]
+[0m14:39:44  47 of 126 START test not_null_dim_account_opened_date .......................... [RUN]
+[0m14:39:44  42 of 126 PASS not_null_dim_account_credit_limit ............................... [[32mPASS[0m in 3.32s]
+[0m14:39:44  48 of 126 START test not_null_dim_account_product_key .......................... [RUN]
+[0m14:39:47  45 of 126 PASS not_null_dim_account_initial_deposit ............................ [[32mPASS[0m in 2.66s]
+[0m14:39:47  49 of 126 START test not_null_dim_account_updated_at ........................... [RUN]
+[0m14:39:47  47 of 126 PASS not_null_dim_account_opened_date ................................ [[32mPASS[0m in 2.65s]
+[0m14:39:47  50 of 126 START test not_null_dim_customer_customer_id ......................... [RUN]
+[0m14:39:47  46 of 126 PASS not_null_dim_account_minimum_balance ............................ [[32mPASS[0m in 2.68s]
+[0m14:39:47  51 of 126 START test not_null_dim_customer_customer_key ........................ [RUN]
+[0m14:39:47  48 of 126 PASS not_null_dim_account_product_key ................................ [[32mPASS[0m in 2.55s]
+[0m14:39:47  52 of 126 START test not_null_dim_date_date_key ................................ [RUN]
+[0m14:39:49  49 of 126 PASS not_null_dim_account_updated_at ................................. [[32mPASS[0m in 2.53s]
+[0m14:39:49  53 of 126 START test not_null_dim_date_full_date ............................... [RUN]
+[0m14:39:49  50 of 126 PASS not_null_dim_customer_customer_id ............................... [[32mPASS[0m in 2.53s]
+[0m14:39:49  54 of 126 START test not_null_dim_location_location_id ......................... [RUN]
+[0m14:39:49  52 of 126 PASS not_null_dim_date_date_key ...................................... [[32mPASS[0m in 2.59s]
+[0m14:39:49  55 of 126 START test not_null_dim_location_location_key ........................ [RUN]
+[0m14:39:49  51 of 126 PASS not_null_dim_customer_customer_key .............................. [[32mPASS[0m in 2.73s]
+[0m14:39:49  56 of 126 START test not_null_dim_location_location_name ....................... [RUN]
+[0m14:39:52  53 of 126 PASS not_null_dim_date_full_date ..................................... [[32mPASS[0m in 2.59s]
+[0m14:39:52  57 of 126 START test not_null_dim_product_product_category ..................... [RUN]
+[0m14:39:52  54 of 126 PASS not_null_dim_location_location_id ............................... [[32mPASS[0m in 2.60s]
+[0m14:39:52  58 of 126 START test not_null_dim_product_product_id ........................... [RUN]
+[0m14:39:52  55 of 126 PASS not_null_dim_location_location_key .............................. [[32mPASS[0m in 2.68s]
+[0m14:39:52  59 of 126 START test not_null_dim_product_product_key .......................... [RUN]
+[0m14:39:52  56 of 126 PASS not_null_dim_location_location_name ............................. [[32mPASS[0m in 2.68s]
+[0m14:39:52  60 of 126 START test not_null_dim_product_product_name ......................... [RUN]
+[0m14:39:54  58 of 126 PASS not_null_dim_product_product_id ................................. [[32mPASS[0m in 2.44s]
+[0m14:39:54  61 of 126 START test not_null_fact_account_balances_account_key ................ [RUN]
+[0m14:39:54  57 of 126 PASS not_null_dim_product_product_category ........................... [[32mPASS[0m in 2.73s]
+[0m14:39:54  62 of 126 START test not_null_fact_account_balances_closing_balance ............ [RUN]
+[0m14:39:55  59 of 126 PASS not_null_dim_product_product_key ................................ [[32mPASS[0m in 2.65s]
+[0m14:39:55  63 of 126 START test not_null_fact_account_balances_date_key ................... [RUN]
+[0m14:39:55  60 of 126 PASS not_null_dim_product_product_name ............................... [[32mPASS[0m in 2.78s]
+[0m14:39:55  64 of 126 START test not_null_fact_account_balances_dw_updated_at .............. [RUN]
+[0m14:39:57  61 of 126 PASS not_null_fact_account_balances_account_key ...................... [[32mPASS[0m in 2.47s]
+[0m14:39:57  65 of 126 START test not_null_fact_account_balances_opening_balance ............ [RUN]
+[0m14:39:57  62 of 126 PASS not_null_fact_account_balances_closing_balance .................. [[32mPASS[0m in 2.49s]
+[0m14:39:57  66 of 126 START test not_null_fact_customer_metrics_avg_daily_volume ........... [RUN]
+[0m14:39:57  63 of 126 PASS not_null_fact_account_balances_date_key ......................... [[32mPASS[0m in 2.46s]
+[0m14:39:57  67 of 126 START test not_null_fact_customer_metrics_customer_key ............... [RUN]
+[0m14:39:57  64 of 126 PASS not_null_fact_account_balances_dw_updated_at .................... [[32mPASS[0m in 2.58s]
+[0m14:39:57  68 of 126 START test not_null_fact_customer_metrics_dw_updated_at .............. [RUN]
+[0m14:39:59  65 of 126 PASS not_null_fact_account_balances_opening_balance .................. [[32mPASS[0m in 2.47s]
+[0m14:39:59  69 of 126 START test not_null_fact_customer_metrics_metric_date ................ [RUN]
+[0m14:39:59  66 of 126 PASS not_null_fact_customer_metrics_avg_daily_volume ................. [[32mPASS[0m in 2.49s]
+[0m14:39:59  70 of 126 START test not_null_fact_customer_metrics_monthly_transactions ....... [RUN]
+[0m14:40:00  67 of 126 PASS not_null_fact_customer_metrics_customer_key ..................... [[32mPASS[0m in 2.50s]
+[0m14:40:00  71 of 126 START test not_null_fact_customer_metrics_monthly_volume ............. [RUN]
+[0m14:40:00  68 of 126 PASS not_null_fact_customer_metrics_dw_updated_at .................... [[32mPASS[0m in 2.56s]
+[0m14:40:00  72 of 126 START test not_null_fact_transactions_account_key .................... [RUN]
+[0m14:40:02  69 of 126 PASS not_null_fact_customer_metrics_metric_date ...................... [[32mPASS[0m in 2.73s]
+[0m14:40:02  73 of 126 START test not_null_fact_transactions_customer_key ................... [RUN]
+[0m14:40:02  70 of 126 PASS not_null_fact_customer_metrics_monthly_transactions ............. [[32mPASS[0m in 2.59s]
+[0m14:40:02  74 of 126 START test not_null_fact_transactions_date_key ....................... [RUN]
+[0m14:40:02  71 of 126 PASS not_null_fact_customer_metrics_monthly_volume ................... [[32mPASS[0m in 2.59s]
+[0m14:40:02  75 of 126 START test not_null_fact_transactions_dw_updated_at .................. [RUN]
+[0m14:40:03  72 of 126 PASS not_null_fact_transactions_account_key .......................... [[32mPASS[0m in 3.03s]
+[0m14:40:03  76 of 126 START test not_null_fact_transactions_location_key ................... [RUN]
+[0m14:40:05  73 of 126 PASS not_null_fact_transactions_customer_key ......................... [[32mPASS[0m in 2.62s]
+[0m14:40:05  77 of 126 START test not_null_fact_transactions_product_key .................... [RUN]
+[0m14:40:05  74 of 126 PASS not_null_fact_transactions_date_key ............................. [[32mPASS[0m in 2.74s]
+[0m14:40:05  78 of 126 START test not_null_fact_transactions_transaction_amount ............. [RUN]
+[0m14:40:05  75 of 126 PASS not_null_fact_transactions_dw_updated_at ........................ [[32mPASS[0m in 2.52s]
+[0m14:40:05  79 of 126 START test not_null_fact_transactions_transaction_id ................. [RUN]
+[0m14:40:05  76 of 126 PASS not_null_fact_transactions_location_key ......................... [[32mPASS[0m in 2.44s]
+[0m14:40:06  80 of 126 START test not_null_fact_transactions_transaction_type ............... [RUN]
+[0m14:40:07  77 of 126 PASS not_null_fact_transactions_product_key .......................... [[32mPASS[0m in 2.39s]
+[0m14:40:07  81 of 126 START test not_null_int_account_metrics_account_key .................. [RUN]
+[0m14:40:07  78 of 126 PASS not_null_fact_transactions_transaction_amount ................... [[32mPASS[0m in 2.42s]
+[0m14:40:07  82 of 126 START test not_null_int_account_metrics_month ........................ [RUN]
+[0m14:40:07  79 of 126 PASS not_null_fact_transactions_transaction_id ....................... [[32mPASS[0m in 2.47s]
+[0m14:40:07  83 of 126 START test not_null_int_account_risk_metrics_account_key ............. [RUN]
+[0m14:40:08  80 of 126 PASS not_null_fact_transactions_transaction_type ..................... [[32mPASS[0m in 2.47s]
+[0m14:40:08  84 of 126 START test not_null_int_customer_metrics_customer_key ................ [RUN]
+[0m14:40:10  81 of 126 PASS not_null_int_account_metrics_account_key ........................ [[32mPASS[0m in 2.77s]
+[0m14:40:10  85 of 126 START test not_null_int_customer_product_metrics_customer_key ........ [RUN]
+[0m14:40:10  82 of 126 PASS not_null_int_account_metrics_month .............................. [[32mPASS[0m in 2.76s]
+[0m14:40:10  86 of 126 START test not_null_int_customer_product_metrics_first_product_date .. [RUN]
+[0m14:40:10  83 of 126 PASS not_null_int_account_risk_metrics_account_key ................... [[32mPASS[0m in 2.71s]
+[0m14:40:10  87 of 126 START test not_null_int_customer_product_metrics_latest_product_date . [RUN]
+[0m14:40:11  84 of 126 PASS not_null_int_customer_metrics_customer_key ...................... [[32mPASS[0m in 2.69s]
+[0m14:40:11  88 of 126 START test not_null_int_transaction_metrics_account_key .............. [RUN]
+[0m14:40:12  85 of 126 PASS not_null_int_customer_product_metrics_customer_key .............. [[32mPASS[0m in 2.67s]
+[0m14:40:12  89 of 126 START test not_null_int_transaction_metrics_customer_key ............. [RUN]
+[0m14:40:13  86 of 126 PASS not_null_int_customer_product_metrics_first_product_date ........ [[32mPASS[0m in 2.67s]
+[0m14:40:13  90 of 126 START test relationships_dim_account_account_key__account_key__ref_src_accounts_  [RUN]
+[0m14:40:13  87 of 126 PASS not_null_int_customer_product_metrics_latest_product_date ....... [[32mPASS[0m in 2.68s]
+[0m14:40:13  91 of 126 START test relationships_dim_account_customer_key__customer_key__ref_dim_customer_  [RUN]
+[0m14:40:13  88 of 126 PASS not_null_int_transaction_metrics_account_key .................... [[32mPASS[0m in 2.71s]
+[0m14:40:13  92 of 126 START test relationships_dim_account_product_key__product_key__ref_dim_product_  [RUN]
+[0m14:40:15  89 of 126 PASS not_null_int_transaction_metrics_customer_key ................... [[32mPASS[0m in 2.63s]
+[0m14:40:15  90 of 126 PASS relationships_dim_account_account_key__account_key__ref_src_accounts_  [[32mPASS[0m in 2.49s]
+[0m14:40:15  93 of 126 START test relationships_dim_customer_customer_key__customer_key__ref_src_customers_  [RUN]
+[0m14:40:15  94 of 126 START test relationships_fact_account_balances_account_key__account_key__ref_dim_account_  [RUN]
+[0m14:40:15  91 of 126 PASS relationships_dim_account_customer_key__customer_key__ref_dim_customer_  [[32mPASS[0m in 2.48s]
+[0m14:40:15  95 of 126 START test relationships_fact_account_balances_date_key__date_key__ref_dim_date_  [RUN]
+[0m14:40:16  92 of 126 PASS relationships_dim_account_product_key__product_key__ref_dim_product_  [[32mPASS[0m in 2.45s]
+[0m14:40:16  96 of 126 START test relationships_fact_customer_metrics_customer_key__customer_key__ref_dim_customer_  [RUN]
+[0m14:40:18  93 of 126 PASS relationships_dim_customer_customer_key__customer_key__ref_src_customers_  [[32mPASS[0m in 2.56s]
+[0m14:40:18  97 of 126 START test relationships_fact_transactions_account_key__account_key__ref_dim_account_  [RUN]
+[0m14:40:18  95 of 126 PASS relationships_fact_account_balances_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 2.59s]
+[0m14:40:18  98 of 126 START test relationships_fact_transactions_customer_key__customer_key__ref_dim_customer_  [RUN]
+[0m14:40:18  94 of 126 PASS relationships_fact_account_balances_account_key__account_key__ref_dim_account_  [[32mPASS[0m in 2.83s]
+[0m14:40:18  99 of 126 START test relationships_fact_transactions_date_key__date_key__ref_dim_date_  [RUN]
+[0m14:40:18  96 of 126 PASS relationships_fact_customer_metrics_customer_key__customer_key__ref_dim_customer_  [[32mPASS[0m in 2.57s]
+[0m14:40:18  100 of 126 START test relationships_fact_transactions_location_key__location_key__ref_dim_location_  [RUN]
+[0m14:40:20  97 of 126 PASS relationships_fact_transactions_account_key__account_key__ref_dim_account_  [[32mPASS[0m in 2.33s]
+[0m14:40:20  101 of 126 START test relationships_fact_transactions_product_key__product_key__ref_dim_product_  [RUN]
+[0m14:40:20  98 of 126 PASS relationships_fact_transactions_customer_key__customer_key__ref_dim_customer_  [[32mPASS[0m in 2.48s]
+[0m14:40:20  102 of 126 START test relationships_int_account_metrics_account_key__account_key__ref_src_accounts_  [RUN]
+[0m14:40:20  99 of 126 PASS relationships_fact_transactions_date_key__date_key__ref_dim_date_  [[32mPASS[0m in 2.49s]
+[0m14:40:20  103 of 126 START test relationships_int_account_risk_metrics_account_key__account_key__ref_src_accounts_  [RUN]
+[0m14:40:21  100 of 126 PASS relationships_fact_transactions_location_key__location_key__ref_dim_location_  [[32mPASS[0m in 2.45s]
+[0m14:40:21  104 of 126 START test relationships_int_customer_metrics_customer_key__customer_key__ref_src_customers_  [RUN]
+[0m14:40:23  101 of 126 PASS relationships_fact_transactions_product_key__product_key__ref_dim_product_  [[32mPASS[0m in 2.65s]
+[0m14:40:23  105 of 126 START test relationships_int_customer_product_metrics_customer_key__customer_key__ref_src_customers_  [RUN]
+[0m14:40:23  102 of 126 PASS relationships_int_account_metrics_account_key__account_key__ref_src_accounts_  [[32mPASS[0m in 2.55s]
+[0m14:40:23  106 of 126 START test relationships_int_transaction_metrics_account_key__account_key__ref_src_accounts_  [RUN]
+[0m14:40:23  104 of 126 PASS relationships_int_customer_metrics_customer_key__customer_key__ref_src_customers_  [[32mPASS[0m in 2.56s]
+[0m14:40:23  107 of 126 START test relationships_int_transaction_metrics_customer_key__customer_key__ref_src_customers_  [RUN]
+[0m14:40:25  103 of 126 PASS relationships_int_account_risk_metrics_account_key__account_key__ref_src_accounts_  [[32mPASS[0m in 4.14s]
+[0m14:40:25  108 of 126 START test source_not_null_finflow_analytics_production_src_accounts_account_key  [RUN]
+[0m14:40:25  105 of 126 PASS relationships_int_customer_product_metrics_customer_key__customer_key__ref_src_customers_  [[32mPASS[0m in 2.70s]
+[0m14:40:25  109 of 126 START test source_not_null_finflow_analytics_production_src_customers_customer_key  [RUN]
+[0m14:40:25  106 of 126 PASS relationships_int_transaction_metrics_account_key__account_key__ref_src_accounts_  [[32mPASS[0m in 2.53s]
+[0m14:40:25  110 of 126 START test source_not_null_finflow_analytics_production_src_dates_date_key  [RUN]
+[0m14:40:26  107 of 126 PASS relationships_int_transaction_metrics_customer_key__customer_key__ref_src_customers_  [[32mPASS[0m in 2.55s]
+[0m14:40:26  111 of 126 START test source_not_null_finflow_analytics_production_src_locations_location_key  [RUN]
+[0m14:40:27  108 of 126 PASS source_not_null_finflow_analytics_production_src_accounts_account_key  [[32mPASS[0m in 2.44s]
+[0m14:40:27  112 of 126 START test source_not_null_finflow_analytics_production_src_products_product_key  [RUN]
+[0m14:40:28  109 of 126 PASS source_not_null_finflow_analytics_production_src_customers_customer_key  [[32mPASS[0m in 2.38s]
+[0m14:40:28  113 of 126 START test source_not_null_finflow_analytics_production_src_transactions_transaction_id  [RUN]
+[0m14:40:28  110 of 126 PASS source_not_null_finflow_analytics_production_src_dates_date_key  [[32mPASS[0m in 2.57s]
+[0m14:40:28  114 of 126 START test source_unique_finflow_analytics_production_src_accounts_account_key  [RUN]
+[0m14:40:28  111 of 126 PASS source_not_null_finflow_analytics_production_src_locations_location_key  [[32mPASS[0m in 2.45s]
+[0m14:40:28  115 of 126 START test source_unique_finflow_analytics_production_src_customers_customer_key  [RUN]
+[0m14:40:29  112 of 126 PASS source_not_null_finflow_analytics_production_src_products_product_key  [[32mPASS[0m in 2.31s]
+[0m14:40:29  116 of 126 START test source_unique_finflow_analytics_production_src_dates_date_key  [RUN]
+[0m14:40:30  113 of 126 PASS source_not_null_finflow_analytics_production_src_transactions_transaction_id  [[32mPASS[0m in 2.55s]
+[0m14:40:30  117 of 126 START test source_unique_finflow_analytics_production_src_locations_location_key  [RUN]
+[0m14:40:30  114 of 126 PASS source_unique_finflow_analytics_production_src_accounts_account_key  [[32mPASS[0m in 2.49s]
+[0m14:40:30  118 of 126 START test source_unique_finflow_analytics_production_src_products_product_key  [RUN]
+[0m14:40:31  115 of 126 PASS source_unique_finflow_analytics_production_src_customers_customer_key  [[32mPASS[0m in 2.40s]
+[0m14:40:31  119 of 126 START test source_unique_finflow_analytics_production_src_transactions_transaction_id  [RUN]
+[0m14:40:32  116 of 126 PASS source_unique_finflow_analytics_production_src_dates_date_key .. [[32mPASS[0m in 2.36s]
+[0m14:40:32  120 of 126 START test unique_dim_account_account_key ........................... [RUN]
+[0m14:40:33  117 of 126 PASS source_unique_finflow_analytics_production_src_locations_location_key  [[32mPASS[0m in 2.40s]
+[0m14:40:33  121 of 126 START test unique_dim_customer_customer_id .......................... [RUN]
+[0m14:40:33  118 of 126 PASS source_unique_finflow_analytics_production_src_products_product_key  [[32mPASS[0m in 2.48s]
+[0m14:40:33  122 of 126 START test unique_dim_customer_customer_key ......................... [RUN]
+[0m14:40:33  119 of 126 PASS source_unique_finflow_analytics_production_src_transactions_transaction_id  [[32mPASS[0m in 2.33s]
+[0m14:40:33  123 of 126 START test unique_dim_date_date_key ................................. [RUN]
+[0m14:40:34  120 of 126 PASS unique_dim_account_account_key ................................. [[32mPASS[0m in 2.34s]
+[0m14:40:34  124 of 126 START test unique_dim_location_location_key ......................... [RUN]
+[0m14:40:35  121 of 126 PASS unique_dim_customer_customer_id ................................ [[32mPASS[0m in 2.43s]
+[0m14:40:35  125 of 126 START test unique_dim_product_product_key ........................... [RUN]
+[0m14:40:35  122 of 126 PASS unique_dim_customer_customer_key ............................... [[32mPASS[0m in 2.34s]
+[0m14:40:35  126 of 126 START test unique_fact_transactions_transaction_id .................. [RUN]
+[0m14:40:36  123 of 126 PASS unique_dim_date_date_key ....................................... [[32mPASS[0m in 2.39s]
+[0m14:40:36  124 of 126 PASS unique_dim_location_location_key ............................... [[32mPASS[0m in 2.35s]
+[0m14:40:38  125 of 126 PASS unique_dim_product_product_key ................................. [[32mPASS[0m in 2.41s]
+[0m14:40:38  126 of 126 PASS unique_fact_transactions_transaction_id ........................ [[32mPASS[0m in 2.36s]
+[0m14:40:38  
+[0m14:40:38  Finished running 126 data tests in 0 hours 1 minutes and 19.90 seconds (79.90s).
+[0m14:40:38  
+[0m14:40:38  [31mCompleted with 16 errors, 0 partial successes, and 0 warnings:[0m
+[0m14:40:38  
+[0m14:40:38    Database Error in test accepted_values_dim_account_below_minimum_balance_flag__0__1 (models/gold/schema.yml)
+  Unrecognized name: below_minimum_balance_flag at [14:9]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/accepted_values_dim_account_below_minimum_balance_flag__0__1.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test accepted_values_fact_account_balances_below_minimum_balance_flag__0__1 (models/gold/schema.yml)
+  No matching signature for operator IN for argument types INT64 and {STRING} at [24:23]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/accepted_values_fact_account_b_287902b96f49c3024370f4c1eced0364.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test accepted_values_fact_transactions_is_negative_balance__0__1 (models/gold/schema.yml)
+  No matching signature for operator IN for argument types INT64 and {STRING} at [24:23]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/accepted_values_fact_transactions_is_negative_balance__0__1.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test accepted_values_fact_transactions_is_high_value_transaction__0__1 (models/gold/schema.yml)
+  No matching signature for operator IN for argument types INT64 and {STRING} at [24:23]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/accepted_values_fact_transacti_4bb33db18d01fd0d6ea23abbf35b09c2.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_account_balances_monthly_transaction_count__monthly_transaction_count_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "monthly_transaction_count" at [15:37]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_3cecb3b35157827367a5d4ac4b64516c.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_active_products_count__active_products_count_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "active_products_count" at [15:33]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_600f4c3f0f1810a857840dff33fe4484.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_active_accounts__active_accounts_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "active_accounts" at [15:27]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_a41e6ab265b8bdc7320b310421cf3448.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_avg_daily_volume__avg_daily_volume_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "avg_daily_volume" at [15:28]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_a5e081bca948e114598809c11cc9a71d.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_monthly_fees__monthly_fees_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "monthly_fees" at [15:24]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_3c3ff002902d1dff990da787040fb0dc.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_monthly_transactions__monthly_transactions_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "monthly_transactions" at [15:32]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_001b7c1d7bc186490cf0dc60ca0df742.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_product_categories_used__product_categories_used_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "product_categories_used" at [15:35]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_595d23efeb892e9b29d9af48956d36ae.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_monthly_volume__monthly_volume_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "monthly_volume" at [15:26]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_6c5889f75bd818a1559f65973a712f2a.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_total_accounts__total_accounts_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "total_accounts" at [15:26]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_fbc76663028eeec00f59871d53942e2d.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_customer_metrics_product_subcategories_used__product_subcategories_used_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "product_subcategories_used" at [15:38]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_f76160963509871584ee017702efb495.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_transactions_fee_percentage__fee_percentage_0_AND_fee_percentage_100 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "fee_percentage" at [15:26]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_065cdaaa0d7a830f57bfcb9e2e40c725.sql
+[0m14:40:38  
+[0m14:40:38    Database Error in test dbt_utils_expression_is_true_fact_transactions_transaction_amount__transaction_amount_0 (models/gold/schema.yml)
+  Syntax error: Expected "," but got identifier "transaction_amount" at [15:30]
+  compiled code at target/run/finflow_analytics/models/gold/schema.yml/dbt_utils_expression_is_true_f_98039a79ecd10a455173feda38cb38af.sql
+[0m14:40:38  
+[0m14:40:38  Done. PASS=110 WARN=0 ERROR=16 SKIP=0 TOTAL=126
