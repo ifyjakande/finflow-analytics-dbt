@@ -35,7 +35,7 @@ vars:
   max_balance: 10000000000
   
   # Date configuration
-  start_date: '2020-01-01'
+  start_date: '2025-01-01'
   end_date: '2025-12-31'
 
 # Configuring models
