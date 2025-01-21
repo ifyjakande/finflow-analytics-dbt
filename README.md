@@ -5,9 +5,9 @@
 ## Table of Contents 📑
 - [Overview](#overview-)
 - [Project Structure](#project-structure-)
-- [Data Architecture](#data-architecture-)
+- [Data Architecture](#data-architecture)
 - [Key Analyses](#key-analyses-)
-- [Custom Macros](#custom-macros-)
+- [Custom Macros](#custom-macros)
 - [Data Quality Framework](#data-quality-framework-)
 - [Installation & Setup](#installation--setup-)
 - [Development Workflow](#development-workflow-)
@@ -264,7 +264,7 @@ WITH risk_metrics AS (
 )
 ```
 
-## Custom Macros 🛠️
+## Custom Macros 
 
 ### Financial Calculations 🧮
 1. **Growth Rate Calculator**
