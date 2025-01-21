@@ -585,7 +585,7 @@ models:
 1. **Fork the Repository**
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/finflow-analytics.git
+git clone https://github.com/ifyjakande/finflow-analytics.git
 cd finflow-analytics
 
 # Add upstream remote
