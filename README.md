@@ -91,7 +91,7 @@ finflow_analytics:
 
 ### 3. Project Initialization 🏁
 ```bash
-git clone https://github.com/your-org/finflow-analytics.git
+git clone https://github.com/ifyjakande/finflow-analytics.git
 cd finflow-analytics
 dbt deps
 dbt seed
