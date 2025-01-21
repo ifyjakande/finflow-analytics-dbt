@@ -3,12 +3,12 @@
 > Enterprise Financial Data Analytics Platform with dbt & BigQuery 💰
 
 ## Table of Contents 📑
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [Data Architecture](#data-architecture)
-- [Installation & Setup](#installation--setup)
-- [Development Workflow](#development-workflow)
-- [Contributing](#contributing)
+- [Overview 🎯](#overview-)
+- [Project Structure 📁](#project-structure-)
+- [Data Architecture 🏗️](#data-architecture-%EF%B8%8F)
+- [Installation & Setup 🚀](#installation--setup-)
+- [Development Workflow 💻](#development-workflow-)
+- [Contributing 🤝](#contributing-)
 
 ## Overview 🎯
 FinFlow Analytics is a comprehensive dbt (data build tool) project designed for financial data analytics using BigQuery as the data warehouse. The project implements a modern data modeling approach with bronze (raw), silver (intermediate), and gold (business-ready) layers, featuring robust data quality testing and financial metric calculations.
@@ -147,4 +147,4 @@ models:
 - Add appropriate tests for new features
 
 ---
-*Last updated: January 21, 2025* 📅
+*Last updated: January 21, 2025* �
